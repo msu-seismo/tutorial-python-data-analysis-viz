@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{mathptmx}                             % The closest font to Times New Roman font in native LaTeX (http://ctan.org/pkg/mathptmx)
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+%\geometry{landscape}                		% Activate for rotated page geometry
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{dirtytalk}
+\usepackage[inline]{enumitem}
+\usepackage{hyperref}
+\usepackage{textcomp}                          % Use single quotation \textquotesingle
+\hypersetup{backref,pdfpagemode=FullScreen,colorlinks=true,urlcolor=blue}
+\usepackage{adjustbox}
+\usepackage{multirow}
+%SetFonts
+\font\myfont=cmr12 at 10pt 
+%SetFonts
+\begin{document}
+
+\section*{Jupyter Notebook Set up and Anaconda Installation}
+The goal of this tutorial is to set up Python program for your research projects. Jupyter Notebook will be used for this purpose. \\ \\
+There are two ways you can run Jupyter Notebook with Python, by connecting to the engineering JupyterHub server or by installing python on your personal computer.
+
+\subsection*{Option 1: Connect to the engineering JupyterHub server}
+You can request an engineering computing account. If this is your first time using your Engineering account you will need to activate the account by
+going to the following website: 
+\begin{center}
+\href{https://www.egr.msu.edu/decs/myaccount/?page=activate}{https://www.egr.msu.edu/decs/myaccount/?page=activate} 
+\end{center}
+Enter your MSU NetID. The initial password will be your APID with an @ at the end (example: A12345678@) and then you have to set a new password that meets the
+requirements listed on the page. Verify the password. Then agree to the terms and Activate. \\ \\
+Once your account is activated you can access the classroom Jupyterhub server using the following instructions:
+\begin{enumerate}[noitemsep]
+\item Open up a web browser and go to the URL \href{https://jupyterhub.egr.msu.edu}{https://jupyterhub.egr.msu.edu}.
+\item Type your engineering login name, which is your MSU NetID.
+\item Enter your engineering password.
+\end{enumerate}
+If everything is working properly you will see the main \say{Files} windows in the Jupyter interface.
+
+\subsection*{Option 2: Install python on your personal computer}
+\begin{enumerate}[noitemsep]
+\item Go to the Anaconda Download webpage \href{https://www.anaconda.com/distribution}{https://www.anaconda.com/distribution}.
+\item Choose your operating system (Windows, OS X, or Linux) and download Anaconda (Python 3.7 version, 64 bit recommended).
+\item Install all the dependencies of Pandas and GeoPandas using the Anaconda Navigator, click \say{Environments} tab and search the relevant packages that are not installed, select them and then click on the \say{Apply} button.
+\item Open the command line program on your computer
+\begin{itemize}[noitemsep]
+\item On Windows, type CMD in the run box in the start menu.
+\item On Mac, type \say{terminal} and hit enter in the Finder window, or double click to open the terminal application in the Utility folder.
+\item On Linux, open up a console application.
+\end{itemize}
+\item Type \say{ipython notebook} or \say{jupyter notebook} in the command line and hit enter.
+\end{enumerate}
+
+If everything goes correctly, a browser window should open up with the Jupyter interface running. If things don\textquotesingle t work, don\textquotesingle t worry, we will help you get started.
+
+\subsection*{Instructions for getting IPython notebook files into Jupyter}
+IPython notebooks, also known as Jupyter notebooks, are files that end with the .ipynb extension. We will give you two example files to work with, you can edit them for your own learning or research 
+purpose. Please download the ipynb files from the our GitHub repository
+(\href{https://github.com/msu-seismo/python-data-analysis-viz.git}{https://github.com/msu-seismo/python-data-analysis-viz.git}). Once you have an ipynb file you can load it into Jupyter using the
+\say{upload} button on the main \say{Files} tab in the Jupyter web interface. Clicking on this button will
+cause a file browser window to open. Just navigate to your ipynb file, select it and hit the
+open button. Once you see your filename in the Jupyter window you can just click on that
+name to start using that file. 
+\end{document}
