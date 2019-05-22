@@ -1,5 +1,5 @@
 # python-data-analysis-viz
-# This repository contains .pdf and .ipynb files and input data files.
+This repository contains .pdf and .ipynb files and input data files.
 Our aim is to teach python beginner: 
 1. how to set up Jupyter Notebook and install all the dependancies
 2. how to read in csv file into python using pandas
