@@ -16,6 +16,9 @@
 \hypersetup{backref,pdfpagemode=FullScreen,colorlinks=true,urlcolor=blue}
 \usepackage{adjustbox}
 \usepackage{multirow}
+\usepackage{listings}
+%\usepackage{fontspec}
+%\setmonofont{Consolas}
 %SetFonts
 \font\myfont=cmr12 at 10pt 
 %SetFonts
@@ -24,15 +27,34 @@
 \section*{Jupyter Notebook Set up and Anaconda Installation}
 
 \textbf{Min Chen (\href{chenmi22@msu.edu}{chenmi22@msu.edu}}) \\ 
-\textbf{Last updated on May 25, 2019}
+\textbf{Tong Zhou (\href{zhouton3@msu.edu}{zhouton3@msu.edu}}) \\ 
+\textbf{Last updated on May 26, 2019}
 
 The goal of this tutorial is to set up Python program for your research projects. Jupyter Notebook, an interactive environment for python coding, will be used for this purpose. 
-There are two ways you can run Jupyter Notebook with Python, by installing python on your personal computer or by connecting to the engineering JupyterHub server.
+There are 3 ways you can run Jupyter Notebook with Python: 1) installing python on your personal computer, 2) run Jupyter Notebook remotely on the icer hpcc, and 3) connecting to the engineering JupyterHub server.
+
+\subsection*{Before you go:}
+Check the operating system you use. 
+
+\textbf{Linux:} 
+
+You should be good to skip this section.
+
+\textbf{Macos:} 
+
+Install the xcode command line tools.  You may find it helpful in this link: \href{http://osxdaily.com/2014/02/12/install-command-line-tools-mac-os-x/}{http://osxdaily.com/ 2014/02/12/install-command-line-tools-mac-os-x/}. 
+
+Install homebrew: It is a useful software package manager on macos.  \href{http://osxdaily.com/2018/03/07/how-install-homebrew-mac-os/}{http://osxdaily.com/2018/03/07/how-install-homebrew-mac-os/}
+
+\textbf{Windows10:}
+
+Install the ubuntu-subsystem on your computer. It is fast and safe, with nearly all the features of the ubuntu-linux available. This link may be helpful: \href{https://itsfoss.com/install-bash-on-windows/}{https://itsfoss.com/install-bash-on-windows/}
 
 \subsection*{Option 1: Install python on your personal computer}
 \begin{enumerate}[noitemsep]
+\item Check your system architecture and python environment. Usually recent computers use x86-64 architecture. Type python in your command line to check your python version.
 \item Go to the Anaconda Download webpage \href{https://www.anaconda.com/distribution}{https://www.anaconda.com/distribution}.
-\item Choose your operating system (Windows, OS X, or Linux) and download Anaconda (Python 3.7 version, 64 bit recommended). 
+\item Choose your operating system (Windows, OS X, or Linux. If using a ubuntu-subsystem in windows10, choose Linux) and download Anaconda suitable for your environment.
 Install Anaconda on your computer by double clicking on the package you downloaded and follow the instructions.
 \item Open \say{Anaconda-Navigator},  click on \say{Environments} tab and search the relevant packages that are not installed, which includes
 obspy, obspyck, obspandas, and geopandas. Select them and then click on the \say{Apply} button. You will also need to install the dependencies of 
@@ -52,7 +74,38 @@ geopy (optional; for geocoding). For plotting, these additional packages may be 
 
 If everything goes correctly, a browser window should open up with the Jupyter interface running. If things don\textquotesingle t work, don\textquotesingle t worry, we will help you get started.
 
-\subsection*{Option 2: Connect to the engineering JupyterHub server}
+\subsection*{Option 2: Run Jupyter notebook on the icer hpcc}
+MSU hpcc has Linux x86-64 arcitecture and python 2.7 environment by default. To activate the anaconda on the icer hpcc, use this command:
+\begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+module load Anaconda2/4.2.0
+\end{lstlisting}
+Or you can download the latest anaconda through the official website \href{https://www.anaconda.com/distribution/#download-section}{https://www.anaconda.com/ distribution/#download-section}. Choose the right version (Linux, x86-64, python2.7) Log in to your account, use scp to copy the local installer to your home folder, and then install the anaconda as instructed in option 1.
+\begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+scp local_file usrname@hpcc.msu.edu:remote_folder
+\end{lstlisting}
+When successfully installed (or activated) anaconda, you may install all the package needed. You may want to create a virtural environment first, and then install jupyter notebook, numpy, obspy, ...
+ \begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+conda create -n environment_name python=3.7
+conda install jupyter notebook
+conda install numpy
+conda install scipy
+conda install matplotlib
+conda install obspy
+...
+ \end{lstlisting}
+Next step is to set up the port forwarding.
+
+Open a new terminal window, use this command to log in:
+\begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+ssh -L localhost:portnumber1:localhost:portnumber2 usrname@hpcc.msu.edu
+ \end{lstlisting}
+It established a link that forwards the output of the remote computer from portnumber2 to the local computer on portnumber1. Note: use different portnumber2 between 30000 to 60000 will reduce the chance that you got interference with others. Then use this command to start a jupyter notebook
+\begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+jupyter notebook --no-browser --port=portnumber2
+ \end{lstlisting}
+Then copy and paste the output URL to your local browser, and change the portnumber2 to portnumber1, you should be all set.
+
+\subsection*{Option 3: Connect to the engineering JupyterHub server}
 You can request an engineering computing account. If this is your first time using your Engineering account you will need to activate the account by
 going to the following website: 
 \begin{center}
@@ -72,10 +125,25 @@ If everything is working properly you will see the main \say{Files} windows in t
 \subsection*{Instructions for getting IPython notebook files into Jupyter}
 IPython notebooks, also known as Jupyter notebooks, are files that end with the .ipynb extension. We will give you two example files to work with, you can edit them for your own learning or research 
 purpose. Please download the ipynb files from the our GitHub repository by using the following command line: \\\\
-git clone \href{https://github.com/msu-seismo/python-data-analysis-viz.git}{https://github.com/msu-seismo/python-data-analysis-viz.git} \\\\
+\begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+git clone https://github.com/msu-seismo/python-data-analysis-viz.git
+\end{lstlisting}
+
+or visit the website  \href{https://github.com/msu-seismo/python-data-analysis-viz.git}{https://github.com/msu-seismo/python-data-analysis-viz.git} \\\\
 You can load the ipynb files in the directory downloaded from our GitHub repository into Jupyter using the
 \say{upload} button on the main \say{Files} tab in the Jupyter web interface. Clicking on this button will
 cause a file browser window to open. Just navigate to your ipynb file, select it and hit the
 open button. Once you see your filename in the Jupyter window you can just click on that
 name to start using that file. 
+
+\subsection*{Resources}
+I personally recommend Lion Krischer's workshop for you to learn the basic idea of python, from simple a + b to complex signal processing. You can find Lion's ipython notebooks from:
+
+\href{https://github.com/krischer/mess_2019}{https://github.com/krischer/mess\_2019}
+
+You can clone his git to either your own computer or your icer hpcc account by
+\begin{lstlisting}[language=bash, numbers=left, numberstyle=\tiny,keywordstyle=\color{blue!70},basicstyle=\ttfamily]
+git clone https://github.com/krischer/mess_2019.git
+\end{lstlisting}
+
 \end{document}
