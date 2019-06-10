@@ -1,7 +1,7 @@
 # python-data-analysis-viz
-## by Min Chen (chenmi22@msu.edu)
+## Min Chen (chenmi22@msu.edu), Tong Zhou, Ziyi Xi, and Jiaqi Li
 ## MSU Data Science and Computational Seismology Lab 
-## Last updated on May 25, 2019
+## Last updated on June 9, 2019
 
 
 This repository contains .pdf and .ipynb files and input data files.
