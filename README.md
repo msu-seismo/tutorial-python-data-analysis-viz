@@ -14,13 +14,17 @@ In order to import geopandas in python_data_viz_analysis.ipynb,
 you need to create a new env for it to run properly.
 Please run the following command lines in your terminal to set up and activate the environment.
 
+```
 bash
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 conda create --name gp_env python=3.7 geopandas --yes
 . activate gp_env 
+```
 
-After the new env (gp_env) is created, you only need to type the following lines next time you need to activate gp_env.
+After the new env (gp_env) is created, you only need to type the following lines to activate gp_env next time you need to use geopandas.
 
+```
 bash
 . activate gp_env
+```
